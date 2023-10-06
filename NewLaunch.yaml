@@ -1,0 +1,32 @@
+---
+- name: Create EC2 Instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    aws_access_key: "AKIASNNAFHC6UDAEDI5X"
+    aws_secret_key: "2HlIXPDqEz0KTjsVTjUk6HuCbGtV/OCJWb4Zm2Ji"
+    region: "us-east-1"
+    instance_type: "t2.micro"
+    ami_id: "ami-053b0d53c279acc90"  # Replace with your desired AMI ID
+    key_name: "Meghana_proton"   # Replace with your key pair name
+    security_group: "sg-05fa11d8299759d24"  # Replace with your security group name
+    subnet_id: "subnet-08ed66eb2f95f8afa"  # Use vpc_subnet_id for specifying the subnet
+    instance_name: "MyEC2Instance"  # Replace with your desired instance name
+
+  tasks:
+    - name: Launch EC2 Instance
+      ec2:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        region: "{{ region }}"
+        key_name: "{{ key_name }}"
+        instance_type: "{{ instance_type }}"
+        image: "{{ ami_id }}"
+        group: "{{ security_group }}"
+        vpc_subnet_id: "{{ vpc_subnet_id }}"  # Use vpc_subnet_id to specify the subnet
+        wait: yes
+        instance_tags:
+          Name: "{{ instance_name }}"
+      register: ec2_instance
+
+    # Rest of your playbook tasks...
