@@ -10,7 +10,7 @@
     ami_id: "ami-053b0d53c279acc90"  # Replace with your desired AMI ID
     key_name: "Meghana_proton"   # Replace with your key pair name
     security_group: "sg-05fa11d8299759d24"  # Replace with your security group name
-    subnet_id: "subnet-08ed66eb2f95f8afa"  # Use vpc_subnet_id for specifying the subnet
+    subnet_id: "vpc_subnet_id"  # Use vpc_subnet_id for specifying the subnet
     instance_name: "MyEC2Instance"  # Replace with your desired instance name
 
   tasks:
