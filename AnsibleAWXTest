@@ -1,0 +1,24 @@
+---
+- name: Create an Incident in ServiceNow
+  hosts: localhost
+  tasks:
+    - name: Create an Incident
+      uri:
+        url: https://infosystechnologiesltdsvsdemo17.service-now.com/api/now/table/incident
+        method: POST
+        user: "Ansible_User"
+        password: "hIoXeL1MvJwz1}CwLw,4hjIFiGFTB[SL_W%v-"
+        headers:
+          Accept: application/json
+          Content-Type: application/json
+        body:
+          short_description: "Incident from AWX"
+          description: "This incident was created via AWX integration."
+          priority: "2"
+        body_format: json
+        return_content: yes
+      register: result
+
+    - name: Print the response
+      debug:
+        var: result
